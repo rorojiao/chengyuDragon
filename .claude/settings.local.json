@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python:*)",
+      "Bash(pip install:*)",
+      "Bash(pyinstaller:*)",
+      "Bash(pip uninstall:*)",
+      "Bash(sudo rm:*)",
+      "Bash(pip3 install:*)",
+      "Bash(cat:*)",
+      "Bash(/opt/homebrew/opt/python@3.13/bin/python3.13:*)",
+      "Bash(chmod:*)",
+      "Bash(./run_game.sh:*)"
+    ]
+  }
+}

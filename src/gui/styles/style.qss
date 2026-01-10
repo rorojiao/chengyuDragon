@@ -1,0 +1,474 @@
+/*
+ * 成语接龙游戏 - QSS样式表
+ * 新中式风格
+ */
+
+/* 全局样式 */
+* {
+    font-family: "Microsoft YaHei", "SimHei", "PingFang SC", "STHeiti", sans-serif;
+}
+
+QWidget {
+    background-color: #FAFAFA;
+    color: #333333;
+}
+
+/* 主窗口 */
+MainWindow {
+    background-color: #F5F5F5;
+}
+
+/* 主菜单 */
+MainMenu {
+    background-color: #FAFAFA;
+}
+
+#title_label {
+    font-size: 64px;
+    font-weight: bold;
+    color: #D32F2F;
+    qproperty-alignment: AlignCenter;
+    padding: 40px;
+}
+
+#subtitle_label {
+    font-size: 18px;
+    color: #666666;
+    qproperty-alignment: AlignCenter;
+    padding-bottom: 60px;
+}
+
+QPushButton {
+    font-size: 20px;
+    padding: 15px 50px;
+    border-radius: 8px;
+    background-color: #1976D2;
+    color: white;
+    border: none;
+}
+
+QPushButton:hover {
+    background-color: #1565C0;
+}
+
+QPushButton:pressed {
+    background-color: #0D47A1;
+}
+
+QPushButton:disabled {
+    background-color: #BDBDBD;
+    color: #757575;
+}
+
+/* 游戏界面 */
+GameScreen {
+    background-color: #FAFAFA;
+}
+
+#game_title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333333;
+    padding: 20px;
+    qproperty-alignment: AlignCenter;
+}
+
+#round_info {
+    font-size: 18px;
+    color: #666666;
+    padding: 10px;
+    qproperty-alignment: AlignCenter;
+}
+
+#idiom_display_area {
+    background-color: white;
+    border-radius: 10px;
+    border: 1px solid #E0E0E0;
+    padding: 20px;
+}
+
+/* 成语卡片 */
+IdiomCard {
+    background-color: white;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 10px;
+}
+
+IdiomCard[player="true"] {
+    background-color: #E8F5E9;
+    border: 2px solid #4CAF50;
+}
+
+IdiomCard[player="false"] {
+    background-color: #FFF3E0;
+    border: 2px solid #FF9800;
+}
+
+#idiom_text {
+    font-size: 32px;
+    font-weight: bold;
+    color: #333333;
+    qproperty-alignment: AlignCenter;
+    padding: 10px;
+}
+
+#player_label {
+    font-size: 14px;
+    color: #888888;
+    qproperty-alignment: AlignCenter;
+}
+
+/* 输入区域 */
+#input_area {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+#input_field {
+    font-size: 24px;
+    padding: 10px;
+    border: 2px solid #9E9E9E;
+    border-radius: 5px;
+    background-color: white;
+    color: #333333;
+}
+
+#input_field:focus {
+    border: 2px solid #2196F3;
+    background-color: #F5F5F5;
+}
+
+#submit_button {
+    font-size: 18px;
+    padding: 12px 40px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#submit_button:hover {
+    background-color: #45A049;
+}
+
+#submit_button:disabled {
+    background-color: #BDBDBD;
+    color: #757575;
+}
+
+#hint_button {
+    font-size: 18px;
+    padding: 12px 30px;
+    background-color: #FF9800;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#hint_button:hover {
+    background-color: #FB8C00;
+}
+
+#hint_button:disabled {
+    background-color: #BDBDBD;
+    color: #757575;
+}
+
+#forfeit_button {
+    font-size: 18px;
+    padding: 12px 30px;
+    background-color: #F44336;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+#forfeit_button:hover {
+    background-color: #E53935;
+}
+
+/* 计时器 */
+#timer_label {
+    font-size: 24px;
+    color: #F44336;
+    qproperty-alignment: AlignCenter;
+    padding: 10px;
+    font-weight: bold;
+}
+
+/* 提示信息 */
+#message_label {
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 5px;
+    qproperty-alignment: AlignCenter;
+}
+
+#message_label[type="info"] {
+    background-color: #E3F2FD;
+    color: #1976D2;
+}
+
+#message_label[type="success"] {
+    background-color: #E8F5E9;
+    color: #388E3C;
+}
+
+#message_label[type="error"] {
+    background-color: #FFEBEE;
+    color: #D32F2F;
+}
+
+#message_label[type="warning"] {
+    background-color: #FFF3E0;
+    color: #F57C00;
+}
+
+/* 设置面板 */
+SettingsPanel {
+    background-color: white;
+    border-radius: 10px;
+}
+
+#settings_title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333333;
+    padding: 20px;
+}
+
+QGroupBox {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    border: 1px solid #E0E0E0;
+    border-radius: 5px;
+    margin-top: 10px;
+    padding: 10px;
+}
+
+QGroupBox::title {
+    subcontrol-origin: margin;
+    left: 10px;
+    padding: 0 5px;
+}
+
+QLabel {
+    font-size: 14px;
+    color: #333333;
+    padding: 5px;
+}
+
+QLineEdit {
+    font-size: 14px;
+    padding: 8px;
+    border: 1px solid #9E9E9E;
+    border-radius: 4px;
+    background-color: white;
+    color: #333333;
+}
+
+QLineEdit:focus {
+    border: 1px solid #2196F3;
+}
+
+QSpinBox {
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #9E9E9E;
+    border-radius: 4px;
+    background-color: white;
+}
+
+QComboBox {
+    font-size: 14px;
+    padding: 5px;
+    border: 1px solid #9E9E9E;
+    border-radius: 4px;
+    background-color: white;
+}
+
+QComboBox::drop-down {
+    border: none;
+}
+
+QComboBox::down-arrow {
+    width: 12px;
+    height: 12px;
+}
+
+QCheckBox {
+    font-size: 14px;
+    color: #333333;
+    spacing: 8px;
+}
+
+QCheckBox::indicator {
+    width: 18px;
+    height: 18px;
+    border: 2px solid #9E9E9E;
+    border-radius: 3px;
+    background-color: white;
+}
+
+QCheckBox::indicator:checked {
+    background-color: #2196F3;
+    border-color: #2196F3;
+    image: url(:/icons/check.png);
+}
+
+QCheckBox::indicator:hover {
+    border-color: #2196F3;
+}
+
+/* 滚动条 */
+QScrollBar:vertical {
+    background-color: #F5F5F5;
+    width: 12px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical {
+    background-color: #BDBDBD;
+    min-height: 30px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:vertical:hover {
+    background-color: #9E9E9E;
+}
+
+QScrollBar::add-line:vertical,
+QScrollBar::sub-line:vertical {
+    height: 0px;
+}
+
+QScrollBar:horizontal {
+    background-color: #F5F5F5;
+    height: 12px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal {
+    background-color: #BDBDBD;
+    min-width: 30px;
+    border-radius: 6px;
+}
+
+QScrollBar::handle:horizontal:hover {
+    background-color: #9E9E9E;
+}
+
+QScrollBar::add-line:horizontal,
+QScrollBar::sub-line:horizontal {
+    width: 0px;
+}
+
+/* 对话框 */
+QDialog {
+    background-color: white;
+    border-radius: 10px;
+}
+
+QMessageBox {
+    background-color: white;
+}
+
+QMessageBox QLabel {
+    font-size: 14px;
+    color: #333333;
+}
+
+QMessageBox QPushButton {
+    min-width: 80px;
+    padding: 8px 20px;
+    font-size: 14px;
+}
+
+/* 暗色主题 */
+MainWindow[theme="dark"] {
+    background-color: #1E1E1E;
+}
+
+MainWindow[theme="dark"] QWidget {
+    background-color: #1E1E1E;
+    color: #E0E0E0;
+}
+
+MainWindow[theme="dark"] #title_label {
+    color: #FF5252;
+}
+
+MainWindow[theme="dark"] #subtitle_label {
+    color: #BDBDBD;
+}
+
+MainWindow[theme="dark"] QPushButton {
+    background-color: #1565C0;
+    color: white;
+}
+
+MainWindow[theme="dark"] QPushButton:hover {
+    background-color: #1976D2;
+}
+
+MainWindow[theme="dark"] QLineEdit {
+    background-color: #2D2D2D;
+    color: #E0E0E0;
+    border-color: #424242;
+}
+
+MainWindow[theme="dark"] QComboBox {
+    background-color: #2D2D2D;
+    color: #E0E0E0;
+}
+
+MainWindow[theme="dark"] QGroupBox {
+    color: #E0E0E0;
+    border-color: #424242;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* 状态指示灯 */
+#status_indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 6px;
+}
+
+#status_indicator[state="connected"] {
+    background-color: #4CAF50;
+}
+
+#status_indicator[state="disconnected"] {
+    background-color: #F44336;
+}
+
+#status_indicator[state="connecting"] {
+    background-color: #FF9800;
+}

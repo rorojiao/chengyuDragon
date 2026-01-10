@@ -1,0 +1,68 @@
+# 成语接龙游戏 - 快速启动指南
+
+## 🚀 最简单的启动方式
+
+### 在终端中运行：
+
+```bash
+cd "/Users/jiaojunze/Library/Mobile Documents/com~apple~CloudDocs/working_MAC/chengyuDragon"
+./run_game.sh
+```
+
+就这么简单！脚本会自动处理所有依赖检查。
+
+---
+
+## 📋 如果上面不行，手动启动：
+
+```bash
+cd "/Users/jiaojunze/Library/Mobile Documents/com~apple~CloudDocs/working_MAC/chengyuDragon"
+/opt/homebrew/opt/python@3.13/bin/python3.13 main.py
+```
+
+---
+
+## ⚠️ 如果提示缺少依赖：
+
+```bash
+/opt/homebrew/opt/python@3.13/bin/python3.13 -m pip install --user --break-system-packages PyQt6 PyYAML requests pypinyin httpx
+```
+
+---
+
+## 🎮 游戏配置（可选）
+
+如果要使用AI功能（LM Studio）：
+
+1. 打开LM Studio
+2. 加载中文模型
+3. 启动API服务器（默认端口1234）
+4. 在游戏设置中配置API地址
+
+**注意**：即使不配置LM Studio，游戏也能正常玩（使用数据库模式）
+
+---
+
+## 📁 项目文件
+
+- `run_game.sh` - 启动脚本 ⭐
+- `main.py` - 主程序
+- `config.yaml` - 配置文件
+- `resources/idioms.db` - 成语数据库（291个成语）
+
+---
+
+## ❓ 常见问题
+
+**Q: 点击没反应？**
+A: 使用终端运行 `./run_game.sh` 查看错误信息
+
+**Q: 提示Python版本不对？**
+A: 修改 run_game.sh 中的 PYTHON_EXE 路径
+
+**Q: PyQt6导入失败？**
+A: 完全重装: `pip3 uninstall PyQt6; pip3 install PyQt6`
+
+---
+
+**祝游戏愉快！** 🎉
