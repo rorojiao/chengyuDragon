@@ -18,6 +18,7 @@ from src.core.game_manager import GameManager
 from src.core.score_calculator import ScoreCalculator
 from src.gui.components.idiom_card import IdiomCard
 from src.utils.exceptions import APIException
+from src.utils.sound_manager import SoundManager
 
 
 logger = logging.getLogger(__name__)
@@ -47,6 +48,15 @@ class GameScreen(QWidget):
         self.config_manager = config_manager
         self.database = database
         self.ai_client = ai_client
+
+        # 初始化音效管理器
+        self.sound_manager = SoundManager(parent=self)
+        sound_enabled = self.config_manager.get('ui.sound_enabled', True)
+        self.sound_manager.set_sound_enabled(sound_enabled)
+        try:
+            self.sound_manager.load_sounds()
+        except Exception as e:
+            logger.warning(f"音效加载失败: {e}")
 
         self.game_manager: Optional[GameManager] = None
         self.timer: Optional[QTimer] = None
@@ -241,8 +251,24 @@ class GameScreen(QWidget):
         """添加成语卡片到显示区域"""
         # 确保在主线程中创建卡片（通过传递parent）
         card = IdiomCard(idiom, is_player, parent=self.idiom_container)
+
+        # 尝试从数据库获取成语解释
+        try:
+            idiom_data = self.database.get_idiom_by_word(idiom)
+            if idiom_data:
+                card.set_explanation(
+                    idiom_data.explanation,
+                    idiom_data.pinyin
+                )
+        except Exception as e:
+            logger.debug(f"无法获取成语解释: {e}")
+
         card.appear_animation()
         self.idiom_layout.addWidget(card)
+
+        # 播放卡片出现音效
+        if is_player:
+            self.sound_manager.play_card_appear()
 
         # 滚动到底部
         scroll_area = self.idiom_container.parent()
@@ -255,6 +281,8 @@ class GameScreen(QWidget):
         if not self.game_manager:
             return
 
+        self.sound_manager.play_button_click()  # 播放按钮音效
+
         idiom = self.input_field.text().strip()
         if not idiom:
             self._show_message("请输入成语", "warning")
@@ -264,6 +292,7 @@ class GameScreen(QWidget):
         result = self.game_manager.submit_player_idiom(idiom)
 
         if result.is_valid:
+            self.sound_manager.play_submit()  # 播放提交音效
             self.input_field.clear()
             self._add_idiom_card(idiom, is_player=True)
             self._show_message("正确！", "success")
@@ -276,6 +305,7 @@ class GameScreen(QWidget):
                 # AI回合
                 QTimer.singleShot(500, self._ai_turn)
         else:
+            self.sound_manager.play_error()  # 播放错误音效
             self._show_message(result.message, "error")
             self.input_field.setFocus()
 
@@ -350,6 +380,7 @@ class GameScreen(QWidget):
 
     def _on_ai_thinking(self):
         """AI思考状态"""
+        self.sound_manager.play_ai_thinking()  # 播放AI思考音效
         self._show_message("AI思考中...", "info")
 
     def _on_ai_response(self, idiom: str):
@@ -365,8 +396,11 @@ class GameScreen(QWidget):
         if not self.game_manager:
             return
 
+        self.sound_manager.play_button_click()  # 播放按钮音效
+
         hint = self.game_manager.use_hint()
         if hint:
+            self.sound_manager.play_hint()  # 播放提示音效
             self._show_message(f"提示: {hint}", "info")
             self.input_field.setText(hint)
         else:
@@ -376,6 +410,8 @@ class GameScreen(QWidget):
         """认输"""
         if not self.game_manager:
             return
+
+        self.sound_manager.play_button_click()  # 播放按钮音效
 
         reply = QMessageBox.question(
             self,
@@ -406,6 +442,12 @@ class GameScreen(QWidget):
             return
 
         result = self.game_manager.end_game(winner, reason)
+
+        # 播放结束音效
+        if winner == 'player':
+            self.sound_manager.play_victory()
+        else:
+            self.sound_manager.play_defeat()
 
         # 停止计时器
         if self.timer:

@@ -119,6 +119,14 @@ IdiomCard[player="false"] {
     qproperty-alignment: AlignCenter;
 }
 
+#pinyin_label {
+    font-size: 14px;
+    color: #757575;
+    qproperty-alignment: AlignCenter;
+    font-style: italic;
+    padding: 2px;
+}
+
 /* 输入区域 */
 #input_area {
     background-color: white;
